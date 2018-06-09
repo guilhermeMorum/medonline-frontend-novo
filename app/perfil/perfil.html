@@ -1,39 +1,68 @@
 <div class="container">
-  <form (ngSubmit)="gravar(this)">
-    <label class="label-padrao">Nome Completo</label>
-    <div class="form-group bloco-input">
-      <input class="form-control" name="nome" type="text" class="form-control">
-    </div>
+    <form name="form" ng-submit="form.$valid && gravar()">
+        <label class="label-padrao">Nome Completo</label>
+        <div class="form-group bloco-input">
+            <input class="form-control" name="nome" type="text" ng-model="usuario.nome" required>
+        </div>
 
-    <label class="label-padrao">Gênero</label>
-    <div class="form-group bloco-input">
-      <input type="radio"  value="masculino" ng-control="sexo" name="sexo" ngModel [value]="MASC"> Masculino
-      <input type="radio" value="feminino" ng-control="sexo" name="sexo" ngModel [value]="FEM"> Feminino
-    </div>
+        <label class="label-padrao">Gênero</label>
+        <div class="form-group bloco-input">
+            <input type="radio" name="sexo" ng-model="usuario.sexo" value="MASC" required> Masculino
+            <input type="radio"  name="sexo" ng-model="usuario.sexo" value="FEM" required> Feminino
+        </div>
 
-    <label class="label-padrao">Email</label>
-    <div class="form-group bloco-input">
-      <input type="text" name="email" ngModel>
-    </div>
+        <label class="label-padrao">E-Mail</label>
+        <div class="form-group bloco-input">
+            <input type="text" name="email" ng-model="usuario.email" required>
+        </div>
 
-    <label class="label-padrao">Data de Nascimento</label>
-    <div class="form-group bloco-input">
-      <input type="text" name="data_nasc">
-    </div>
+        <div ng-if="cadastrar">
+            <label class="label-padrao">Senha</label>
+            <div class="form-group bloco-input">
+                <input type="password" name="senha" ng-model="usuario.senha" required>
+            </div>
+            <div class="error" ng-if="error.senha">{{error.senha}}</div>
 
-    <label class="label-padrao">CPF</label>
-    <div class="form-group bloco-input">
-      <input type="text" name="cpf">
-    </div>
+            <label class="label-padrao">Confirmar Senha</label>
+            <div class="form-group bloco-input">
+                <input type="password" name="confirmacaoSenha" ng-model="$parent.confirmacaoSenha" required>
+            </div>
+        </div>
 
-    <label class="label-padrao">Telefone</label>
-    <div class="form-group bloco-input">
-      <input type="text" name="telefone">
-    </div>
+        <div class="form-group bloco-input">
+            Sou um Médico <input type="checkbox" name="sexo" ng-model="medico">
+        </div>
 
-    <div class="bloco-input">
-      <button class="botao-azul" type="submit" >Atualizar</button>
-    </div>
+        <div ng-if="medico">
+            <label class="label-padrao">CRM</label>
+            <div class="form-group bloco-input">
+                <input type="text" name="crm" ng-model="usuario.crm" required>
+            </div>
+        </div>
 
-  </form>
+        <label class="label-padrao">Data de Nascimento</label>
+        <div class="form-group bloco-input">
+            <input type="text" name="data_nasc" placeholder="__/__/____" ng-model="usuario.dtNascimento" required>
+        </div>
+
+        <label class="label-padrao">CEP</label>
+        <div class="form-group bloco-input">
+            <input type="text" name="cep" placeholder="_____-___" ng-model="usuario.endereco.cep" required>
+        </div>
+
+        <label class="label-padrao">Complemento</label>
+        <div class="form-group bloco-input">
+            <input type="text" name="complemento" ng-model="usuario.endereco.complemento" required>
+        </div>
+
+        <label class="label-padrao">Logradouro</label>
+        <div class="form-group bloco-input">
+            <input type="text" name="complemento" ng-model="usuario.endereco.logradouro" required>
+        </div>
+
+        <div class="bloco-input">
+            <button class="botao-azul" type="submit">Enviar</button>
+        </div>
+
+    </form>
 </div>
