@@ -1,0 +1,39 @@
+<div class="container">
+  <form (ngSubmit)="gravar(this)">
+    <label class="label-padrao">Nome Completo</label>
+    <div class="form-group bloco-input">
+      <input class="form-control" name="nome" type="text" class="form-control">
+    </div>
+
+    <label class="label-padrao">Gênero</label>
+    <div class="form-group bloco-input">
+      <input type="radio"  value="masculino" ng-control="sexo" name="sexo" ngModel [value]="MASC"> Masculino
+      <input type="radio" value="feminino" ng-control="sexo" name="sexo" ngModel [value]="FEM"> Feminino
+    </div>
+
+    <label class="label-padrao">Email</label>
+    <div class="form-group bloco-input">
+      <input type="text" name="email" ngModel>
+    </div>
+
+    <label class="label-padrao">Data de Nascimento</label>
+    <div class="form-group bloco-input">
+      <input type="text" name="data_nasc">
+    </div>
+
+    <label class="label-padrao">CPF</label>
+    <div class="form-group bloco-input">
+      <input type="text" name="cpf">
+    </div>
+
+    <label class="label-padrao">Telefone</label>
+    <div class="form-group bloco-input">
+      <input type="text" name="telefone">
+    </div>
+
+    <div class="bloco-input">
+      <button class="botao-azul" type="submit" >Atualizar</button>
+    </div>
+
+  </form>
+</div>
