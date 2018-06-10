@@ -1,10 +1,19 @@
-<div class="content-padding">
-	<div class="consulta-item" *ngFor="let consulta of consultas" [routerLink]="['/chat', 1]">
-		<h4>{{consulta.medico}}</h4>
-		<h5>{{consulta.categoria}}</h5>
-		<span>
-			{{consulta.nota}}
-		</span>
-		<img src="http://via.placeholder.com/50x50"/>
+<div>
+	<div class="content-padding">
+		<div >
+			<h4>{{consulta.medico}}</h4>
+			<h5>{{consulta.categoria}}</h5>
+			<span>
+				{{consulta.nota}}
+			</span>
+			<img src="http://via.placeholder.com/50x50"/>
+		</div>
 	</div>
+
+	<select name="especialidade" ng-model="especialidade">
+		<option value="item" ng-repeat="item in especialidades">
+			{{item.especialidade}}
+		</option>
+	</select>
+
 </div>
