@@ -4,7 +4,7 @@
 angular.module('medOnline', [
   'ngRoute'
 ]);
-angular.module('medOnline').config(function($routeProvider, $locationProvider){
+angular.module('medOnline').config(function($routeProvider){
 
     $routeProvider
 
@@ -18,10 +18,14 @@ angular.module('medOnline').config(function($routeProvider, $locationProvider){
             controller  : 'ConsultaCtrl'
         })
 
-
         .when('/perfil', {
             templateUrl : 'perfil/perfil.html',
             controller  : 'PerfilCtrl'
+        })
+
+        .when('/cadastrar', {
+            templateUrl : 'perfil/perfil.html',
+            controller  : 'CadastroCtrl'
         })
 
         .otherwise({ redirectTo: '/home' });
