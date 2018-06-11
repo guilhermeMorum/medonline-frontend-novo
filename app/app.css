@@ -359,5 +359,145 @@ input:not([type=radio]):not([type=checkbox]){
     padding: 5px 20px;
 }
 
+.medicos {
+    padding: 20px;
+}
 
+.medicos .medico {
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #EEE;
+}
+
+.medicos .medico h4,
+.medicos .medico h5 {
+    padding: 0;
+    margin: 0;
+}
+
+.medicos .medico h4 {
+    color: #333;
+}
+
+.medicos .medico h5 {
+    color: #777;
+}
+.detalhe-consulta {
+    background-color: #EEE;
+    margin: 20px;
+    padding: 20px;
+}
+
+.detalhe-consulta h3,
+.detalhe-consulta h4,
+.detalhe-consulta h5 {
+    margin: 0;
+    padding: 0;
+}
+
+.detalhe-consulta p {
+    margin: 0;
+    padding: 0;
+    color: #555;
+}
+
+.detalhe-consulta .description-item {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.detalhe-consulta .span-small {
+    margin-bottom: 10px;
+}
+
+.detalhe-consulta .sub-container h4 {
+    color: #111;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 10px;
+}
+
+.detalhe-consulta .sub-container h5 {
+    color: #333;
+    padding-top: 10px;
+}
+
+.detalhe-consulta .sub-container p {
+    font-size: 14px;
+}
+
+.detalhe-consulta p:first-letter {
+    margin-left: 15px;
+}
+
+.left-offset {
+    padding-left: 15px;
+}
+
+.sub-container {
+    margin: 10;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.1);
+}
+
+.span-small {
+    color: #777;
+    font-size: 14px;
+}
+
+.top-line-separator {
+    padding: 5px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.layout-short-padding {
+    padding: 10px;
+}
+
+.button-container {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.button-container button {
+    color: #FFF;
+    text-transform: uppercase;
+    padding: 5px 15px;
+    border: none;
+    font-size: 14px;
+    font-weight: lighter;
+    background-color: #777;
+    margin-right: 10px;
+}
+
+.button-container button.main {
+    background-color: #F90;
+}
+
+#modalConfirmacao {
+    background-color: rgba(0,0,0,0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.modal-container {
+    background-color: #FFFFFF;
+    padding: 20px;
+}
+
+.absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hidden {
+    display: none;
+}
 

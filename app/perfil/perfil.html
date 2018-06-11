@@ -2,66 +2,67 @@
     <form name="form" ng-submit="form.$valid && gravar()">
         <label class="label-padrao">Nome Completo</label>
         <div class="form-group bloco-input">
-            <input class="form-control" name="nome" type="text" ng-model="usuario.nome" required>
+            <input class="form-control" name="nome" type="text" ng-model="usuario.nome" ng-disabled="!editar" required>
         </div>
 
         <label class="label-padrao">Gênero</label>
         <div class="form-group bloco-input">
-            <input type="radio" name="sexo" ng-model="usuario.sexo" value="MASC" required> Masculino
-            <input type="radio"  name="sexo" ng-model="usuario.sexo" value="FEM" required> Feminino
+            <input type="radio" name="sexo" ng-disabled="!editar" ng-model="usuario.sexo" value="MASC" required> Masculino
+            <input type="radio"  name="sexo" ng-disabled="!editar" ng-model="usuario.sexo" value="FEM" required> Feminino
         </div>
 
         <label class="label-padrao">E-Mail</label>
         <div class="form-group bloco-input">
-            <input type="text" name="email" ng-model="usuario.email" required>
+            <input type="text" name="email" ng-disabled="!editar" ng-model="usuario.email" required>
         </div>
 
         <div ng-if="cadastrar">
             <label class="label-padrao">Senha</label>
             <div class="form-group bloco-input">
-                <input type="password" name="senha" ng-model="usuario.senha" required>
+                <input type="password" ng-disabled="!editar" name="senha" ng-model="usuario.senha" required>
             </div>
             <div class="error" ng-if="error.senha">{{error.senha}}</div>
 
             <label class="label-padrao">Confirmar Senha</label>
             <div class="form-group bloco-input">
-                <input type="password" name="confirmacaoSenha" ng-model="$parent.confirmacaoSenha" required>
+                <input type="password" ng-disabled="!editar" name="confirmacaoSenha" ng-model="$parent.confirmacaoSenha" required>
             </div>
         </div>
 
         <div class="form-group bloco-input">
-            Sou um Médico <input type="checkbox" name="sexo" ng-model="medico">
+            Sou um Médico <input type="checkbox" ng-disabled="!editar" name="sexo" ng-model="medico">
         </div>
 
         <div ng-if="medico">
             <label class="label-padrao">CRM</label>
             <div class="form-group bloco-input">
-                <input type="text" name="crm" ng-model="usuario.crm" required>
+                <input type="text" ng-disabled="!editar" name="crm" ng-model="usuario.crm" required>
             </div>
         </div>
 
         <label class="label-padrao">Data de Nascimento</label>
         <div class="form-group bloco-input">
-            <input type="text" name="data_nasc" placeholder="__/__/____" ng-model="usuario.dtNascimento" required>
+            <input type="text" name="data_nasc" ng-disabled="!editar" placeholder="__/__/____" ng-model="usuario.dtNascimento" required>
         </div>
 
         <label class="label-padrao">CEP</label>
         <div class="form-group bloco-input">
-            <input type="text" name="cep" placeholder="_____-___" ng-model="usuario.endereco.cep" required>
+            <input type="text" name="cep" ng-disabled="!editar" placeholder="_____-___" ng-model="usuario.endereco.cep" required>
         </div>
 
         <label class="label-padrao">Complemento</label>
         <div class="form-group bloco-input">
-            <input type="text" name="complemento" ng-model="usuario.endereco.complemento" required>
+            <input type="text" name="complemento" ng-disabled="!editar" ng-model="usuario.endereco.complemento" required>
         </div>
 
         <label class="label-padrao">Logradouro</label>
         <div class="form-group bloco-input">
-            <input type="text" name="complemento" ng-model="usuario.endereco.logradouro" required>
+            <input type="text" name="complemento" ng-disabled="!editar" ng-model="usuario.endereco.logradouro" required>
         </div>
 
         <div class="bloco-input">
-            <button class="botao-azul" type="submit">Enviar</button>
+            <button class="botao-azul" ng-if="editar" type="submit">Enviar</button>
+            <a href="#/usuario/perfil/editar" ng-if="!editar">Editar</a>
         </div>
 
     </form>

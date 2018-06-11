@@ -1,0 +1,16 @@
+<div>
+
+	<select name="especialidade" ng-model="especialidade">
+		<option ng-value="item.especialidade" ng-repeat="item in especialidades">
+			{{item.especialidade}}
+		</option>
+	</select>
+
+	<div class="medicos">
+		<div class="medico" ng-repeat="medico in medicos | filter: especialidadeFilter" ng-click="detalhar(medico)">
+			<h4>{{medico.nome}}</h4>
+			<h5>{{medico.especialidade.especialidade}}</h5>
+		</div>
+	</div>
+
+</div>

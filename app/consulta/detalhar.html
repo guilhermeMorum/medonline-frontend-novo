@@ -1,0 +1,31 @@
+<div class="detalhe-consulta">
+	<h3>{{medico.nome}}</h3>
+    <span class="span-small left-offset">{{medico.crm}}</span>
+    <div class="top-line-separator layout-short-padding">
+        <div class="description-item">{{genero(medico.sexo)}}</div>
+        <div class="description-item">{{idade(medico.dtNascimento)}} anos</div>
+        <div class="description-item">{{medico.email}}</div>
+        <div class="description-item" ng-if="assunto">Assunto: {{assunto}}</div>
+    </div>
+    <div class="sub-container">
+        <h4>Especialidade</h4>
+        <h5>{{medico.especialidade.especialidade}}</h5>
+        <p>
+            {{medico.especialidade.descricao}}
+        </p>
+    </div>
+    <div class="button-container">
+        <button ng-click="voltar()">Voltar</button>
+        <button ng-click="showModal()" class="main">Marcar Consulta</button>
+    </div>
+</div>
+<div id="modalConfirmacao" class="hidden">
+    <div class="absolute-center modal-container">
+        <label>Assunto da Consulta:</label>
+        <input type="text" ng-model="assuntoModal">
+        <div class="button-container">
+            <button ng-click="fecharModal()">Cancelar</button>
+            <button ng-click="confirmarModal()" class="main">Marcar Consulta</button>
+        </div>
+    </div>
+</div>

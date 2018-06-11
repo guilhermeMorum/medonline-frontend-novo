@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-<body>
+<body ng-controller="MainCtrl">
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -22,29 +22,33 @@
   <!--<div id="splash-screen">
       <h1 class="logo"><span>Med</span>Online</h1>
   </div>-->
-  <div id="header" routerLink="home" *ngIf="router.url != '/home'">
+  <div id="header">
       <h1 class="logo"><span>Med</span>Online</h1>
   </div>
   <div id="body">
       <div ng-view></div>
   </div>
-  <div id="navigation" *ngIf="router.url != '/home'">
+  <div id="navigation" ng-if="usuario">
       <ul>
-          <li><a href="#/home"><fa name="home" label="home"></fa></a></li>
-          <li><a href="#/consultas"><fa name="list-ul" label="consultas"></fa></a></li>
-          <li><a href="#/perfil"><fa name="user" label="perfil"></fa></a></li>
+          <li><a href="#/usuario/perfil">Perfil</a></li>
+          <li><a href="#/medicos">Marque uma Consulta</a></li>
+          <li><a href="#/usuario/consultas">Minhas Consultas</a></li>
       </ul>
   </div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="app.js"></script>
+  <script src="main.controller.js"></script>
   <script src="home/home.controller.js"></script>
-  <script src="consulta/consulta.controller.js"></script>
+  <script src="medicos/medicos.controller.js"></script>
   <script src="perfil/perfil.controller.js"></script>
   <script src="perfil/cadastro.controller.js"></script>
+  <script src="consulta/consulta.controller.js"></script>
+  <script src="services/escopo.compartilhado.service.js"></script>
 </body>
 </html>

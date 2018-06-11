@@ -13,17 +13,27 @@ angular.module('medOnline').config(function($routeProvider){
             controller  : 'HomeCtrl'
         })
 
-        .when('/consultas', {
-            templateUrl : 'consulta/consultas.html',
+        .when('/medicos', {
+            templateUrl : 'medicos/medicos.html',
+            controller  : 'MedicosCtrl'
+        })
+
+        .when('/consulta/detalhar', {
+            templateUrl : 'consulta/detalhar.html',
             controller  : 'ConsultaCtrl'
         })
 
-        .when('/perfil', {
+        .when('/usuario/perfil', {
             templateUrl : 'perfil/perfil.html',
             controller  : 'PerfilCtrl'
         })
 
-        .when('/cadastrar', {
+        .when('/usuario/cadastrar', {
+            templateUrl : 'perfil/perfil.html',
+            controller  : 'CadastroCtrl'
+        })
+
+        .when('/usuario/perfil/editar', {
             templateUrl : 'perfil/perfil.html',
             controller  : 'CadastroCtrl'
         })
