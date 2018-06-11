@@ -16,7 +16,8 @@
     </div>
     <div class="button-container">
         <button ng-click="voltar()">Voltar</button>
-        <button ng-click="showModal()" class="main">Marcar Consulta</button>
+        <button ng-click="showModal()" class="main" ng-if="!assunto">Iniciar Consulta</button>
+        <button ng-click="novaConsulta()" class="main" ng-if="assunto">Confirmar</button>
     </div>
 </div>
 <div id="modalConfirmacao" class="hidden">
@@ -25,7 +26,7 @@
         <input type="text" ng-model="assuntoModal">
         <div class="button-container">
             <button ng-click="fecharModal()">Cancelar</button>
-            <button ng-click="confirmarModal()" class="main">Marcar Consulta</button>
+            <button ng-click="confirmarModal()" class="main">Confirmar</button>
         </div>
     </div>
 </div>
