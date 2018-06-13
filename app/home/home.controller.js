@@ -7,7 +7,7 @@ angular.module('medOnline').controller('HomeCtrl', function($scope, $rootScope, 
     };
 
     vm.login = function(){
-        $http.get('http://localhost:8080/paciente/login/'+vm.usuario+'/'+vm.senha).then(function(result){
+        $http.get($rootScope.host+'/paciente/login/'+vm.usuario+'/'+vm.senha).then(function(result){
             $rootScope.usuario = result.data;
             $location.path('usuario/perfil');
         });

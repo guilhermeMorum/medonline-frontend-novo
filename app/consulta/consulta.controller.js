@@ -2,6 +2,8 @@ angular.module('medOnline').controller('ConsultaCtrl', function($scope, $rootSco
 
     var vm = $scope;
 
+    vm.consultas = [];
+
     function init(){
         if(escopoCompartilhadoService.get("medico")){
             vm.medico = escopoCompartilhadoService.get("medico");
@@ -36,6 +38,12 @@ angular.module('medOnline').controller('ConsultaCtrl', function($scope, $rootSco
         vm.assuntoModal = undefined;
     };
 
+    vm.buscar = function(usuario){
+        $http.get($rootScope.host+'/consulta/buscarPorUsuario/'+$rootScope.usuario.id, consulta).then(function(resp){
+            vm.consultas = resp.data;
+        });
+    }
+
     vm.novaConsulta = function(){
         var consulta = {};
         var dataAtual = new Date();
@@ -44,7 +52,6 @@ angular.module('medOnline').controller('ConsultaCtrl', function($scope, $rootSco
         consulta.paciente = $rootScope.usuario;
         consulta.assunto = vm.assunto;
         $http.post($rootScope.host+'/consulta/salvar', consulta).then(function(resp){
-            console.log(resp);
             $location.path('usuario/perfil');
         });
     };

@@ -28,12 +28,17 @@ angular.module('medOnline').config(function($routeProvider){
             controller  : 'PerfilCtrl'
         })
 
-        .when('/usuario/cadastrar', {
+        .when('/usuario/perfil/editar', {
             templateUrl : 'perfil/perfil.html',
             controller  : 'CadastroCtrl'
         })
 
-        .when('/usuario/perfil/editar', {
+        .when('/usuario/consultas', {
+            templateUrl : 'consulta/listar.html',
+            controller  : 'ConsultaListCtrl'
+        })
+
+        .when('/usuario/cadastrar', {
             templateUrl : 'perfil/perfil.html',
             controller  : 'CadastroCtrl'
         })

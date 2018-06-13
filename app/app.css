@@ -318,7 +318,8 @@ input:not([type=radio]):not([type=checkbox]){
     transform: translateY(-50%);
 }
 
-#login > div > input:focus + label {
+#login > div > input:focus + label,
+#login > div > input:valid + label {
     top: -25px;
     left: 10px;
     transform: translateY(0);
