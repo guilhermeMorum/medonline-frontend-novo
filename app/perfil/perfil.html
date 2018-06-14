@@ -38,6 +38,11 @@
             <div class="form-group bloco-input">
                 <input type="text" ng-disabled="!editar" name="crm" ng-model="usuario.crm" required>
             </div>
+            <select name="especialidade" ng-model="usuario.especialidade.idEspecialidade">
+                <option ng-repeat="item in especialidades" ng-value="item.idEspecialidade">
+                    {{item.especialidade}}
+                </option>
+            </select>
         </div>
 
         <label class="label-padrao">Data de Nascimento</label>

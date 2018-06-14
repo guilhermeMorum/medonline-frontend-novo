@@ -43,6 +43,11 @@ angular.module('medOnline').config(function($routeProvider){
             controller  : 'CadastroCtrl'
         })
 
+        .when('/chat', {
+            templateUrl : 'chat/chat.html',
+            controller  : 'ChatCtrl'
+        })
+
         .otherwise({ redirectTo: '/home' });
 
     //$locationProvider.html5Mode(true);

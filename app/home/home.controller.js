@@ -2,6 +2,12 @@ angular.module('medOnline').controller('HomeCtrl', function($scope, $rootScope, 
 
     var vm = $scope;
 
+    function init(){
+        if($rootScope.usuario){
+            $location.path('usuario/perfil');            
+        }
+    }
+
     vm.irCadastro = function(){
         $location.path('usuario/cadastrar');
     };
@@ -12,5 +18,7 @@ angular.module('medOnline').controller('HomeCtrl', function($scope, $rootScope, 
             $location.path('usuario/perfil');
         });
     }
+
+    init();
 
 });

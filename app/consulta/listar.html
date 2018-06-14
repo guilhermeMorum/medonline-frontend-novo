@@ -1,8 +1,9 @@
 <div>
     <div class="medicos">
         <div class="medico" ng-repeat="consulta in consultas" ng-click="detalhar(consulta)">
-            <h4>asd</h4>
-            <h5>abc</h5>
+            <h4>{{consulta.assunto}}</h4>
+            <h5>{{consulta.medico.nome}}</h5>
+            <span>{{consulta.dtConsulta | date: 'dd/MM/yyyy'}}</span>
         </div>
     </div>
 </div>

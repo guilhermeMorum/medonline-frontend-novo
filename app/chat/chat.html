@@ -1,0 +1,49 @@
+<div id="medic-profile">
+    <h3>{{mensagem.fromPaciente ? consulta.medico.nome : consulta.paciente.nome}} - {{consulta.assunto}}</h3>
+</div>
+<div id="toolbar">
+<a ng-click="anexarExame()" ng-if="mensagem.fromPaciente">Anexar Exame</a>
+<a ng-click="showModal()" ng-if="!mensagem.fromPaciente">Emitir Diagnóstico</a>
+</div>
+<div class="content-padding" id="chat">
+    <div class="message {{msg.fromPaciente == mensagem.fromPaciente ? 'owner' : ''}}" ng-repeat="msg in mensagens">
+        <div class="content">
+            <p>
+                {{msg.texto}}
+            </p>
+            <div>{{msg.dtMensagem | date : 'dd/MM/yyyy - hh:mm'}}</div>
+        </div>
+    </div>
+</div>
+<div id="message-field">
+    <textarea ng-model="msg.texto"></textarea>
+    <div class="button-container">
+        <button class="main" ng-click="enviarMensage()">Enviar</button>
+    </div>
+</div>
+<div id="modalConfirmacao" class="hidden">
+    <div class="absolute-center modal-container">
+        <h3 class="header">Emitir Diagnóstico</h3>
+        <label>Resultado</label>
+        <input type="text" name="title" ng-model="diagnostico.resultado">
+        <label>Observações</label>
+        <textarea ng-model="diagnostico.descricao"></textarea>
+        <div id="receitas" class="content-padding" style="padding-top: 1px;">
+            <h3>Receitas</h3>
+            <label>Descrição</label>
+            <input type="text" name="description" ng-model="descricaoReceita">
+            <div class="button-container">
+                <button class="main" ng-click="addReceita()">Adicionar Receita</button>
+            </div>
+            <ul>
+                <li ng-repeat="receita in diagnostico.receita">
+                    {{receita.descricao}}
+                </li>
+            </ul>
+        </div>
+        <div class="button-container">
+            <button ng-click="fecharModal()">Cancelar</button>
+            <button class="main" ng-click="emitirDiagnostico()">Emitir</button>
+        </div>
+    </div>
+</div>

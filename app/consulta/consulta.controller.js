@@ -3,10 +3,15 @@ angular.module('medOnline').controller('ConsultaCtrl', function($scope, $rootSco
     var vm = $scope;
 
     vm.consultas = [];
+    vm.consulta = {};
 
     function init(){
         if(escopoCompartilhadoService.get("medico")){
-            vm.medico = escopoCompartilhadoService.get("medico");
+            vm.consulta.medico = escopoCompartilhadoService.get("medico");
+            escopoCompartilhadoService.clear();
+        } else if(escopoCompartilhadoService.get("consulta")) {
+            vm.consulta = escopoCompartilhadoService.get("consulta");
+            escopoCompartilhadoService.clear();
         } else {
             vm.voltar();
         }
@@ -26,7 +31,11 @@ angular.module('medOnline').controller('ConsultaCtrl', function($scope, $rootSco
     };
 
     vm.voltar = function(){
-        $location.path('/medicos');
+        if(vm.consulta.idConsulta){
+            $location.path('usuario/consultas');
+        } else {
+            $location.path('/medicos');
+        }
     };
 
     vm.showModal = function(){
@@ -46,20 +55,25 @@ angular.module('medOnline').controller('ConsultaCtrl', function($scope, $rootSco
 
     vm.novaConsulta = function(){
         var consulta = {};
-        var dataAtual = new Date();
-        consulta.dtConsulta = dataAtual.getDay()+'/'+dataAtual.getMonth()+'/'+dataAtual.getFullYear();
-        consulta.medico = vm.medico;
+        consulta.dtConsulta = new Date();
+        consulta.medico = vm.consulta.medico;
         consulta.paciente = $rootScope.usuario;
-        consulta.assunto = vm.assunto;
+        consulta.assunto = vm.consulta.assunto;
         $http.post($rootScope.host+'/consulta/salvar', consulta).then(function(resp){
             $location.path('usuario/perfil');
         });
     };
 
     vm.confirmarModal = function(){
-        vm.assunto = angular.copy(vm.assuntoModal);
+        vm.consulta.assunto = angular.copy(vm.assuntoModal);
         vm.fecharModal();
     };
+
+    vm.irChat = function(){
+        escopoCompartilhadoService.clear();
+        escopoCompartilhadoService.set("consulta", vm.consulta);
+        $location.path('/chat');
+    }
 
     init();
 

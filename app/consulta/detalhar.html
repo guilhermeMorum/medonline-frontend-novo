@@ -1,23 +1,24 @@
 <div class="detalhe-consulta">
-	<h3>{{medico.nome}}</h3>
-    <span class="span-small left-offset">{{medico.crm}}</span>
+	<h3>{{consulta.medico.nome}}</h3>
+    <span class="span-small left-offset">{{consulta.medico.crm}}</span>
     <div class="top-line-separator layout-short-padding">
-        <div class="description-item">{{genero(medico.sexo)}}</div>
-        <div class="description-item">{{idade(medico.dtNascimento)}} anos</div>
-        <div class="description-item">{{medico.email}}</div>
-        <div class="description-item" ng-if="assunto">Assunto: {{assunto}}</div>
+        <div class="description-item">{{genero(consulta.medico.sexo)}}</div>
+        <div class="description-item">{{idade(consulta.medico.dtNascimento)}} anos</div>
+        <div class="description-item">{{consulta.medico.email}}</div>
+        <div class="description-item" ng-if="consulta.assunto">Assunto: {{consulta.assunto}}</div>
     </div>
     <div class="sub-container">
         <h4>Especialidade</h4>
-        <h5>{{medico.especialidade.especialidade}}</h5>
+        <h5>{{consulta.medico.especialidade.especialidade}}</h5>
         <p>
-            {{medico.especialidade.descricao}}
+            {{consulta.medico.especialidade.descricao}}
         </p>
     </div>
     <div class="button-container">
         <button ng-click="voltar()">Voltar</button>
-        <button ng-click="showModal()" class="main" ng-if="!assunto">Iniciar Consulta</button>
-        <button ng-click="novaConsulta()" class="main" ng-if="assunto">Confirmar</button>
+        <button ng-click="showModal()" class="main" ng-if="!consulta.assunto && !consulta.idConsulta">Iniciar Consulta</button>
+        <button ng-click="novaConsulta()" class="main" ng-if="consulta.assunto && !consulta.idConsulta">Confirmar</button>
+        <button ng-click="irChat()" class="main" ng-if="consulta.idConsulta">Chat</button>
     </div>
 </div>
 <div id="modalConfirmacao" class="hidden">

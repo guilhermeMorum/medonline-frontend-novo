@@ -22,7 +22,7 @@
   <!--<div id="splash-screen">
       <h1 class="logo"><span>Med</span>Online</h1>
   </div>-->
-  <div id="header">
+  <div id="header" ng-if="usuario">
       <h1 class="logo"><span>Med</span>Online</h1>
   </div>
   <div id="body">
@@ -50,6 +50,7 @@
   <script src="perfil/cadastro.controller.js"></script>
   <script src="consulta/consulta.controller.js"></script>
   <script src="consulta/consulta.list.controller.js"></script>
+  <script src="chat/chat.controller.js"></script>
   <script src="services/escopo.compartilhado.service.js"></script>
 </body>
 </html>

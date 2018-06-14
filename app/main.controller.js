@@ -10,7 +10,7 @@ angular.module('medOnline').controller('MainCtrl', function($scope, $rootScope, 
     }
 
     function defineGlobals(){
-        $rootScope.host = "https://medonline-backend.herokuapp.com";
+        $rootScope.host = "http://localhost:8080";
     }
 
     init();

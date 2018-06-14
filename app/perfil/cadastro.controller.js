@@ -7,8 +7,11 @@ angular.module('medOnline').controller('CadastroCtrl', function($scope, $rootSco
     vm.cadastrar = true;
     vm.editar = true;
 
+    vm.especialidades = [];
+
     vm.usuario = {
-        endereco: {}
+        endereco: {},
+        especialidade: {}
     };
 
     function init(){
@@ -18,6 +21,10 @@ angular.module('medOnline').controller('CadastroCtrl', function($scope, $rootSco
         } else {
             $location.path('usuario/cadastrar');
         }
+
+        $http.get($rootScope.host+'/especialidade/buscaTodos').then(function(resp){
+            vm.especialidades = resp.data;
+        });
     }
 
     vm.error = {};
@@ -34,10 +41,11 @@ angular.module('medOnline').controller('CadastroCtrl', function($scope, $rootSco
             });
         } else {
             vm.usuario.crm = undefined;
+            vm.usuario.especialidade = undefined;
+            $http.post($rootScope.host+'/paciente/salvar', vm.usuario).then(function(){
+                $location.path('/home');
+            });
         }
-        $http.post($rootScope.host+'/paciente/salvar', vm.usuario).then(function(){
-            $location.path('/home');
-        });
     };
 
     init();
