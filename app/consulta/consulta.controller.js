@@ -25,8 +25,7 @@ angular.module('medOnline').controller('ConsultaCtrl', function($scope, $rootSco
         if(!dataNascimento){
             return '';
         }
-        var idade = dataNascimento.split('/');
-        idade = new Date(idade[2], idade[1], idade[0]);
+        var idade = new Date(dataNascimento);
         return new Date().getFullYear() - idade.getFullYear();
     };
 
@@ -51,7 +50,7 @@ angular.module('medOnline').controller('ConsultaCtrl', function($scope, $rootSco
         $http.get($rootScope.host+'/consulta/buscarPorUsuario/'+$rootScope.usuario.id, consulta).then(function(resp){
             vm.consultas = resp.data;
         });
-    }
+    };
 
     vm.novaConsulta = function(){
         var consulta = {};
@@ -60,7 +59,7 @@ angular.module('medOnline').controller('ConsultaCtrl', function($scope, $rootSco
         consulta.paciente = $rootScope.usuario;
         consulta.assunto = vm.consulta.assunto;
         $http.post($rootScope.host+'/consulta/salvar', consulta).then(function(resp){
-            $location.path('usuario/perfil');
+            $location.path('usuario/consultas');
         });
     };
 

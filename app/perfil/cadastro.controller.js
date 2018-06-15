@@ -18,6 +18,9 @@ angular.module('medOnline').controller('CadastroCtrl', function($scope, $rootSco
         if($rootScope.usuario){
             vm.usuario = $rootScope.usuario;
             vm.cadastrar = false;
+            if(vm.usuario.idMedico){
+                vm.medico = true;
+            }
         } else {
             $location.path('usuario/cadastrar');
         }
@@ -29,9 +32,13 @@ angular.module('medOnline').controller('CadastroCtrl', function($scope, $rootSco
 
     vm.error = {};
 
+    function verificaId(){
+        return vm.usuario.idMedico || vm.usuario.idPaciente;
+    }
+
     vm.gravar = function(){
         vm.error = {};
-        if(vm.usuario.senha != vm.confirmacaoSenha){
+        if(!verificaId() && vm.usuario.senha != vm.confirmacaoSenha){
             vm.error.senha = "As senhas devem ser iguais.";
             return;
         }

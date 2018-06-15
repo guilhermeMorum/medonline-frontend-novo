@@ -1,7 +1,11 @@
 <div>
-    <div class="medicos">
+    <div class="medicos content-padding">
         <div class="medico" ng-repeat="consulta in consultas" ng-click="detalhar(consulta)">
-            <h4>{{consulta.assunto}} <span ng-if="consulta.finalizada">- Essa consulta foi diagnosticada</span></h4>
+            <h4>
+                {{consulta.assunto}}
+                <span ng-if="consulta.diagnostico.length > 0">- Essa consulta foi diagnosticada</span>
+                <span class="cancelada" ng-if="consulta.finalizada && consulta.diagnostico.length == 0">- Essa consulta foi cancelada</span>
+            </h4>
             <h5>{{consulta.medico.nome}}</h5>
             <span>{{consulta.dtConsulta | date: 'dd/MM/yyyy'}}</span>
         </div>

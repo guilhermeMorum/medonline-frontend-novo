@@ -1,5 +1,6 @@
-<div>
+<div class="content-padding">
 	<select name="especialidade" ng-model="especialidade">
+		<option value="" selected>Selecione</option>
 		<option ng-value="item.especialidade" ng-repeat="item in especialidades">
 			{{item.especialidade}}
 		</option>

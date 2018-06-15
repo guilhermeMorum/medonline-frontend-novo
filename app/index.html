@@ -24,14 +24,15 @@
   </div>-->
   <div id="header" ng-if="usuario">
       <img class="logo" src="assets/logo_medonline.png">
+      <button ng-click="logout()">Sair</button>
   </div>
   <div id="body">
       <div ng-view></div>
   </div>
-  <div id="navigation" ng-if="usuario">
+  <div id="navigation" class="{{usuario.idMedico ? 'half' : ''}}" ng-if="usuario">
       <ul>
           <li><a href="#/usuario/perfil">Perfil</a></li>
-          <li><a href="#/medicos">Marque uma Consulta</a></li>
+          <li ng-if="!usuario.idMedico"><a href="#/medicos">Marque uma Consulta</a></li>
           <li><a href="#/usuario/consultas">Minhas Consultas</a></li>
       </ul>
   </div>

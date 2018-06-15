@@ -5,6 +5,7 @@
     <button ng-click="showModal()" ng-if="mensagem.fromPaciente" ng-disabled="consulta.finalizada">Incluir Exame</button>
     <button ng-click="modalExames()" ng-if="consulta.exame.length > 0">Exibir Exames</button>
     <button ng-click="showModal()" ng-if="!mensagem.fromPaciente" ng-disabled="consulta.finalizada">Emitir Diagnóstico</button>
+    <button ng-click="cancelar()" ng-if="!consulta.finalizada">Cancelar Consulta</button>
 </div>
 <div class="content-padding" id="chat">
     <div class="message {{msg.fromPaciente == mensagem.fromPaciente ? 'owner' : ''}}" ng-repeat="msg in mensagens">
@@ -17,7 +18,7 @@
     </div>
 </div>
 <div id="message-field">
-    <textarea ng-model="msg.texto" ng-disabled="consulta.finalizada"></textarea>
+    <textarea ng-model="mensagem.texto" ng-disabled="consulta.finalizada"></textarea>
     <div class="button-container">
         <button class="main" ng-click="enviarMensage()" ng-disabled="consulta.finalizada">Enviar</button>
     </div>

@@ -33,9 +33,16 @@ angular.module('medOnline').controller('ChatCtrl', function($scope, $rootScope, 
     };
 
     vm.emitirDiagnostico = function(){
-        vm.diagnostico.consulta = vm.consulta;
+        vm.diagnostico.idConsulta = vm.consulta.idConsulta;
         $http.post($rootScope.host+'/diagnostico/salvar', vm.diagnostico).then(function(){
             vm.fecharModal();
+            vm.consulta.finalizada = true;
+        });
+    };
+
+    vm.cancelar = function(){
+        $http.get($rootScope.host+'/consulta/cancelar?idConsulta='+vm.consulta.idConsulta).then(function(){
+            vm.consulta.finalizada = true;
         });
     };
 
@@ -73,7 +80,7 @@ angular.module('medOnline').controller('ChatCtrl', function($scope, $rootScope, 
             vm.consulta.exame.push(angular.copy(vm.exame));
             vm.exame = {};
         });
-        vm.fecharModalExames();
+        vm.fecharModal();
     };
 
     init();
