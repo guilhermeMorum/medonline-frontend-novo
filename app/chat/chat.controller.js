@@ -10,6 +10,8 @@ angular.module('medOnline').controller('ChatCtrl', function($scope, $rootScope, 
         receita: []
     };
 
+    vm.exame = {};
+
     function init(){
         vm.consulta = escopoCompartilhadoService.get("consulta");
         if(vm.consulta){
@@ -18,7 +20,6 @@ angular.module('medOnline').controller('ChatCtrl', function($scope, $rootScope, 
                 vm.mensagens = resp.data;
             });
         }
-        console.log(vm.consulta)
         vm.mensagem.consulta = vm.consulta;
         vm.mensagem.fromPaciente = angular.isUndefined($rootScope.usuario.idMedico);
     }
@@ -29,13 +30,14 @@ angular.module('medOnline').controller('ChatCtrl', function($scope, $rootScope, 
             vm.mensagens = resp.data;
             vm.mensagem.texto = "";
         });
-    }
+    };
 
     vm.emitirDiagnostico = function(){
         vm.diagnostico.consulta = vm.consulta;
-        $http.post($rootScope.host+'/diagnostico/salvar', vm.diagnostico).then(function(resp){
+        $http.post($rootScope.host+'/diagnostico/salvar', vm.diagnostico).then(function(){
+            vm.fecharModal();
         });
-    }
+    };
 
     vm.addReceita = function(){
         var receita = {};
@@ -43,7 +45,7 @@ angular.module('medOnline').controller('ChatCtrl', function($scope, $rootScope, 
         receita.dtReceita = new Date();
         vm.diagnostico.receita.push(angular.copy(receita));
         vm.descricaoReceita = undefined;
-    }
+    };
 
     vm.showModal = function(){
         $('#modalConfirmacao').removeClass('hidden');
@@ -54,6 +56,24 @@ angular.module('medOnline').controller('ChatCtrl', function($scope, $rootScope, 
         vm.diagnostico = {
             receita: []
         };
+    };
+
+    vm.modalExames = function(){
+        $('#modalExames').removeClass('hidden');
+    };
+
+    vm.fecharModalExames = function(){
+        $('#modalExames').addClass('hidden');
+    };
+
+    vm.enviarExame = function(){
+        vm.exame.idConsulta = vm.consulta.idConsulta;
+        vm.exame.dtExame = new Date();
+        $http.post($rootScope.host+'/exame/salvar', vm.exame).then(function(){
+            vm.consulta.exame.push(angular.copy(vm.exame));
+            vm.exame = {};
+        });
+        vm.fecharModalExames();
     };
 
     init();

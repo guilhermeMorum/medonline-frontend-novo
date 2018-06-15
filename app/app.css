@@ -165,24 +165,24 @@ fa[label]:after{
     padding: 20px;
 }
 
-#receitas {
+.receitas {
     background-color: #DDD;
     margin-top: 20px;
 }
 
-#receitas .button-container {
+.receitas .button-container {
     border-bottom: 1px solid #BBB;
     padding-bottom: 10px;
 }
 
-#receitas ul {
+.receitas ul {
     padding: 0;
     margin: 0;
     margin-top: 10px;
     list-style-type: none;
 }
 
-#receitas ul li {
+.receitas ul li {
     padding: 10px;
     background-color: #CCC;
     margin-bottom: 5px;
@@ -301,7 +301,7 @@ fa[label]:after{
     box-shadow: 0 3px 5px rgba(0,0,0,0.3);
 }
 
-#toolbar a {
+#toolbar button {
     color: #FFF;
     background-color: #777;
     padding: 5px;
@@ -309,9 +309,10 @@ fa[label]:after{
     display: inline-block;
     font-size: 14px;
     transition: all 0.3s;
+    border: none;
 }
 
-#toolbar a:hover {
+#toolbar button:hover {
     background-color: #999;
 }
 
@@ -363,10 +364,16 @@ textarea {
     margin-top: 15px;
 }
 
+img.logo {
+    height: 100px;
+    margin-top: -30px;
+}
+
 #login .logo {
-    width: 170px;
+    height: 200px;
     display: block;
     margin: 50px auto;
+    margin-bottom: -30px;
 }
 
 #login > div {
@@ -426,6 +433,10 @@ textarea {
     padding: 5px 20px;
 }
 
+[disabled] {
+    opacity: 0.7;
+}
+
 .medicos {
     padding: 20px;
 }
@@ -447,11 +458,17 @@ textarea {
     color: #333;
 }
 
+.medicos .medico h4 span {
+    color: #999;
+    font-weight: lighter;
+    font-size: 14px;
+}
+
 .medicos .medico h5 {
     color: #777;
 }
 
-.medicos .medico span {
+.medicos .medico > span {
     position: absolute;
     top: 50%;
     right: 10px;
@@ -552,7 +569,7 @@ textarea {
     background-color: #F90;
 }
 
-#modalConfirmacao {
+.modal {
     background-color: rgba(0,0,0,0.3);
     position: absolute;
     top: 0;
@@ -563,7 +580,7 @@ textarea {
     width: 100%;
 }
 
-#modalConfirmacao .header {
+.modal .header {
     padding: 10px 20px;
     color: #FFF;
     background-color: #333;
@@ -572,8 +589,29 @@ textarea {
 }
 
 .modal-container {
+    min-width: 600px;
     background-color: #FFFFFF;
     padding: 20px;
+    max-height: 600px;
+    overflow: auto;
+}
+
+.modal-container table {
+    width: 100%;
+    background-color: #DDD;
+    border-collapse: collapse;
+}
+
+.modal-container table th {
+    padding: 10px;
+    color: #FFF;
+    background-color: #555;
+    border-right: 1px solid #333;
+}
+
+.modal-container table td {
+    padding: 10px;
+    border: 1px solid #BBB;
 }
 
 .absolute-center {

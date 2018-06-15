@@ -21,6 +21,19 @@
         <button ng-click="irChat()" class="main" ng-if="consulta.idConsulta">Chat</button>
     </div>
 </div>
+<div class="detalhe-consulta" ng-repeat="diagnostico in consulta.diagnostico">
+    <h3>Diagnóstico</h3>
+    <div class="description-item top-line-separator">Resultado: {{diagnostico.resultado}}</div>
+    <div class="description-item">Observações: {{diagnostico.descricao}}</div>
+    <div class="content-padding receitas" style="padding-top: 1px;">
+        <h4>Receitas</h4>
+        <ul>
+            <li ng-repeat="receita in diagnostico.receita">
+                {{receita.descricao}}
+            </li>
+        </ul>
+    </div>
+</div>
 <div id="modalConfirmacao" class="hidden">
     <div class="absolute-center modal-container">
         <label>Assunto da Consulta:</label>

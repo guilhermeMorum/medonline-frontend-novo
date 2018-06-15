@@ -17,7 +17,7 @@ angular.module('medOnline').controller('HomeCtrl', function($scope, $rootScope, 
             $rootScope.usuario = result.data;
             $location.path('usuario/perfil');
         });
-    }
+    };
 
     init();
 

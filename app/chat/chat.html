@@ -1,9 +1,10 @@
 <div id="medic-profile">
-    <h3>{{mensagem.fromPaciente ? consulta.medico.nome : consulta.paciente.nome}} - {{consulta.assunto}}</h3>
+    <h3>{{mensagem.fromPaciente ? consulta.medico.nome : consulta.paciente.nome}} - {{consulta.assunto}} {{consulta.finalizada ? '(Diagnosticada)' : ''}}</h3>
 </div>
 <div id="toolbar">
-<a ng-click="anexarExame()" ng-if="mensagem.fromPaciente">Anexar Exame</a>
-<a ng-click="showModal()" ng-if="!mensagem.fromPaciente">Emitir Diagnóstico</a>
+    <button ng-click="showModal()" ng-if="mensagem.fromPaciente" ng-disabled="consulta.finalizada">Incluir Exame</button>
+    <button ng-click="modalExames()" ng-if="consulta.exame.length > 0">Exibir Exames</button>
+    <button ng-click="showModal()" ng-if="!mensagem.fromPaciente" ng-disabled="consulta.finalizada">Emitir Diagnóstico</button>
 </div>
 <div class="content-padding" id="chat">
     <div class="message {{msg.fromPaciente == mensagem.fromPaciente ? 'owner' : ''}}" ng-repeat="msg in mensagens">
@@ -16,22 +17,23 @@
     </div>
 </div>
 <div id="message-field">
-    <textarea ng-model="msg.texto"></textarea>
+    <textarea ng-model="msg.texto" ng-disabled="consulta.finalizada"></textarea>
     <div class="button-container">
-        <button class="main" ng-click="enviarMensage()">Enviar</button>
+        <button class="main" ng-click="enviarMensage()" ng-disabled="consulta.finalizada">Enviar</button>
     </div>
 </div>
-<div id="modalConfirmacao" class="hidden">
-    <div class="absolute-center modal-container">
+<div id="modalConfirmacao" class="hidden modal">
+    <!--MEDICO MODAL-->
+    <div class="absolute-center modal-container" ng-if="!mensagem.fromPaciente">
         <h3 class="header">Emitir Diagnóstico</h3>
         <label>Resultado</label>
         <input type="text" name="title" ng-model="diagnostico.resultado">
         <label>Observações</label>
         <textarea ng-model="diagnostico.descricao"></textarea>
-        <div id="receitas" class="content-padding" style="padding-top: 1px;">
+        <div class="content-padding receitas" style="padding-top: 1px;">
             <h3>Receitas</h3>
             <label>Descrição</label>
-            <input type="text" name="description" ng-model="descricaoReceita">
+            <input type="text" name="description" ng-model="$parent.descricaoReceita">
             <div class="button-container">
                 <button class="main" ng-click="addReceita()">Adicionar Receita</button>
             </div>
@@ -44,6 +46,39 @@
         <div class="button-container">
             <button ng-click="fecharModal()">Cancelar</button>
             <button class="main" ng-click="emitirDiagnostico()">Emitir</button>
+        </div>
+    </div>
+    <!--PACIENTE MODAL-->
+    <div class="absolute-center modal-container" ng-if="mensagem.fromPaciente">
+        <h3 class="header">Enviar Exame</h3>
+        <label>Tipo</label>
+        <input type="text" ng-model="exame.tipo">
+        <label>Descrição</label>
+        <textarea ng-model="exame.descricao"></textarea>
+        <div class="button-container">
+            <button ng-click="fecharModal()">Cancelar</button>
+            <button class="main" ng-click="enviarExame()">Enviar</button>
+        </div>
+    </div>
+</div>
+<div id="modalExames" class="modal hidden">
+    <div class="absolute-center modal-container">
+        <table>
+            <thead>
+                <th>Tipo</th>
+                <th>Descrição</th>
+                <th>Data</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="exame in consulta.exame">
+                    <td>{{exame.tipo}}</td>
+                    <td>{{exame.descricao}}</td>
+                    <td>{{exame.dtExame | date: 'dd/MM/yyyy'}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="button-container">
+            <button ng-click="fecharModalExames()">Fechar</button>
         </div>
     </div>
 </div>
